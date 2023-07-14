@@ -23,15 +23,6 @@ router.get('/:bookId', (req, res, next) => {
 router.put('/:commentId',  auth.isOwnerComment,(req, res, next) => {
   const commentId = req.params.commentId;
   const { text } = req.body;
-  // var userId = req.user._id
-
-  // Comment.findById(commentId).then((comment) =>{
-  //   if(!comment){
-  //     return res.status(400).json({ error: 'Comment not found' });
-  //   }
-  //   if(comment.commentor.toString() !== userId){
-  //     return res.status(403).json({ error: 'Unauthorized access' });
-  //   }
 
   Comment.findByIdAndUpdate(commentId, req.body)
     .then((comment) => {
